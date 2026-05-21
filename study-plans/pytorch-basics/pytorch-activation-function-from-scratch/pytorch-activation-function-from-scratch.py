@@ -11,7 +11,7 @@ def activate(x, method="relu"):
     method_is_leaky_relu = method == "leaky_relu"
     print("here")
     if method_is_relu:
-        return torch.maximum(torch.tensor(0), x).tolist()
+        return torch.clamp(x, min=0).tolist()
     elif method_is_sigmoid:
         return (1 / (1 + torch.exp(-x))).tolist()
     elif method_is_tanh:
